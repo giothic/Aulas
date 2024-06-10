@@ -69,6 +69,8 @@ public class calculadoraJava {
             System.out.println("\n\nDigite 0 para sair da calculadora.");
             saida = scan.nextInt();
 
+            System.out.println("TESTE DE EDIÇÃO");
+
         } while (saida != 0);
 
         scan.close();
