@@ -1,7 +1,8 @@
 {
     "java.project.sourcePaths": [
         "aulaSete/carrinho/src",
-        "aulaSeis/pessoa/src"
+        "aulaSeis/pessoa/src",
+        "aulaOito/principal/src"
     ],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
