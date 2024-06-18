@@ -1,16 +1,14 @@
 package estoque;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
-public class Bolo extends Produto{
+public class Bolo extends Produto {
 
     private String sabor;
 
-    
-    public Bolo(String nome, int quantidade, double valor, String sabor) {
-        super(nome, quantidade, valor);
-        
+    public Bolo(String nome, int quantidade, double valor, String sabor, LocalDate fabricacao) {
+        super(nome, quantidade, valor, fabricacao);
+
         this.sabor = sabor;
     }
 
@@ -22,36 +20,42 @@ public class Bolo extends Produto{
         this.sabor = sabor;
     }
 
-        @Override
-    @SuppressWarnings("deprecation")
-    public String validade(Date fabricacao){
-        SimpleDateFormat fs = new SimpleDateFormat("dd/MM/yyyy");
+    @Override
+    public LocalDate hoje(LocalDate hoje) {
 
-        fabricacao.setDate(fabricacao.getDate() + 3);
+        hoje = LocalDate.now();
 
-        return fs.format(fabricacao);
+        return hoje;
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public String data(Date validade){
-        SimpleDateFormat fs = new SimpleDateFormat("dd/MM/yyyy");
+    public LocalDate data(LocalDate validade) {
 
-        validade.setDate(validade.getDate() + 10);
+        LocalDate fabricacao = getFabricacao();
+        validade = fabricacao.plusDays(10);
 
-        return fs.format(validade);
+        return validade;
 
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public String data2(Date validadeA){
-        SimpleDateFormat fs = new SimpleDateFormat("dd/MM/yyyy");
+    public LocalDate data2(LocalDate validadeA) {
 
-        validadeA.setDate(validadeA.getDate() + 3);
+        LocalDate fabricacao = getFabricacao();
+        validadeA = fabricacao.plusDays(3);
 
-        return fs.format(validadeA);
+        return validadeA;
 
+    }
+
+    @Override
+    public String verificador(LocalDate hoje, LocalDate validade) {
+
+        if (validade.isAfter(hoje(null))) {
+            return "Produto vencido";
+        } else {
+            return "Produto na validade";
+        }
     }
 
 }
