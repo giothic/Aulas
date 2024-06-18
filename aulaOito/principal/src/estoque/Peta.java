@@ -1,14 +1,13 @@
 package estoque;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
-public class Peta extends Produto{
+public class Peta extends Produto {
 
     private String tamanho;
 
-    public Peta (String nome, int quantidade, double valor, String tamanho){
-        super(nome, quantidade, valor);
+    public Peta(String nome, int quantidade, double valor, String tamanho, LocalDate fabricacao) {
+        super(nome, quantidade, valor, fabricacao);
 
         this.tamanho = tamanho;
     }
@@ -17,31 +16,54 @@ public class Peta extends Produto{
         return tamanho;
     }
 
-
     public void setTamanho(String tamanho) {
         this.tamanho = tamanho;
     }
 
-        @Override
-    @SuppressWarnings("deprecation")
-    public String validade(Date fabricacao){
-        SimpleDateFormat fs = new SimpleDateFormat("dd/MM/yyyy");
+    @Override
+    public LocalDate hoje(LocalDate hoje) {
 
-        fabricacao.setDate(fabricacao.getDate() + 30);
+        hoje = LocalDate.now();
 
-        return fs.format(fabricacao);
+        return hoje;
     }
 
-    public double venda(int pacote){
+    @Override
+    public LocalDate data(LocalDate validade) {
+
+        LocalDate fabricacao = LocalDate.now();
+        validade = fabricacao.plusDays(10);
+
+        return validade;
+
+    }
+
+    @Override
+    public LocalDate data2(LocalDate validadeA) {
+
+        LocalDate fabricacao = LocalDate.now();
+        validadeA = fabricacao.plusDays(3);
+
+        return validadeA;
+
+    }
+
+    @Override
+    public String verificador(LocalDate hoje, LocalDate validade) {
+
+        if (validade.isAfter(hoje(hoje))) {
+            return "Produto vencido";
+        } else {
+            return "Produto na validade";
+        }
+    }
+
+    public double venda(int pacote) {
         return pacote * 6.70;
     }
 
-    public double venda(double quilo){
+    public double venda(double quilo) {
         return quilo * 15.45;
     }
-
-
-
-
 
 }

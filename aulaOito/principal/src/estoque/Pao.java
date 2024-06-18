@@ -1,13 +1,12 @@
 package estoque;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
-public class Pao extends Produto{
+public class Pao extends Produto {
 
-    public Pao(String nome, int quantidade, double valor) {
-        super(nome, quantidade, valor);
-        //TODO Auto-generated constructor stub
+    public Pao(String nome, int quantidade, double valor, LocalDate fabricacao) {
+        super(nome, quantidade, valor, fabricacao);
+
     }
 
     private String TipoPao;
@@ -21,16 +20,41 @@ public class Pao extends Produto{
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public String validade(Date fabricacao){
-        SimpleDateFormat fs = new SimpleDateFormat("dd/MM/yyyy");
+    public LocalDate hoje(LocalDate hoje) {
 
-        fabricacao.setDate(fabricacao.getDate() + 1);
+        hoje = LocalDate.now();
 
-        return fs.format(fabricacao);
+        return hoje;
     }
 
-    
+    @Override
+    public LocalDate data(LocalDate validade) {
 
+        LocalDate fabricacao = LocalDate.now();
+        validade = fabricacao.plusDays(10);
+
+        return validade;
+
+    }
+
+    @Override
+    public LocalDate data2(LocalDate validadeA) {
+
+        LocalDate fabricacao = LocalDate.now();
+        validadeA = fabricacao.plusDays(3);
+
+        return validadeA;
+
+    }
+
+    @Override
+    public String verificador(LocalDate hoje, LocalDate validade) {
+
+        if (validade.isAfter(hoje(hoje))) {
+            return "Produto vencido";
+        } else {
+            return "Produto na validade";
+        }
+    }
 
 }
