@@ -13,15 +13,13 @@ public class principal {
 
         Figuras circulo1 = new Circulo();
 
-
         System.out.println(quadrado1.forma("Quadrado"));
-        System.out.println(quadrado1.lado(4));
-        quadrado1.area();
-        // System.out.println(quadrado1.perimetro());
+        System.out.println(quadrado1.area(10));
+        System.out.println(quadrado1.perimetro(5.0));
 
        principal.Nome(circulo1);
 
-
+       
     }
 
 }
