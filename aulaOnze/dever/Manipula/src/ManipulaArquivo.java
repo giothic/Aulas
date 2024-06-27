@@ -20,8 +20,9 @@ public class ManipulaArquivo {
     }
 
     public static void escrita(String caminho) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminho, true));
-             Scanner scanner = new Scanner(System.in)) {
+        
+            BufferedWriter writer = new BufferedWriter(new FileWriter(caminho, true));
+            Scanner scanner = new Scanner(System.in);
 
             System.out.println("Digite dois números separados por espaço: ");
             String linha = scanner.nextLine();
@@ -37,6 +38,7 @@ public class ManipulaArquivo {
 
             writer.write(resultadoString + "\n");
 
-        } 
+            writer.close();
+            scanner.close();
     }
 }
