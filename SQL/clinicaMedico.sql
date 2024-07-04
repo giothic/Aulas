@@ -1,0 +1,1 @@
+SELECT * FROM clinica2.possuiespecialidade;
