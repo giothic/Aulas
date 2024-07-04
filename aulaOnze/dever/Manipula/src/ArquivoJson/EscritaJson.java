@@ -17,9 +17,6 @@ public class EscritaJson {
 
         try {
             jsonObject = (JSONObject) parse.parse(new FileReader("saida.json"));
-            // if (obj != null) {
-            //     jsonObject = (JSONObject) obj;
-            // }
 
         } catch (FileNotFoundException e) {
         } catch (IOException | ParseException e) {

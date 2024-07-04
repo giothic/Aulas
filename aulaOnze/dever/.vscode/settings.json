@@ -2,6 +2,9 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "d:\\Users\\ALUNO\\Desktop\\json-20240303.jar",
-        "d:\\Users\\ALUNO\\Downloads\\json-simple-2.1.2.jar"
+        "d:\\Users\\ALUNO\\Downloads\\json-simple-2.1.2.jar",
+        "d:\\Users\\ALUNO\\Downloads\\activation-1.1.jar",
+        "d:\\Users\\ALUNO\\Downloads\\javaee-api-8.0.1.jar",
+        "d:\\Users\\ALUNO\\Downloads\\javax.mail-1.6.2.jar"
     ]
 }
